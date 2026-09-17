@@ -1,0 +1,19 @@
+# Local work, generated data and credentials
+/data/
+/Icons/
+/test-output/
+/backup*/
+/migration*/
+/location-correction*/
+*.exe
+*.pdb
+*.zip
+*.log
+.env
+.env.*
+auth.json
+**/auth.json
+__pycache__/
+
+# Reviewed portable website download
+!/website/downloads/glyphlume-windows.zip

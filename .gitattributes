@@ -1,0 +1,13 @@
+* text=auto
+*.cs text eol=crlf
+*.ps1 text eol=crlf
+*.md text eol=lf
+*.py text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.mp4 binary
+*.zip binary
