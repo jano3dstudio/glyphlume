@@ -135,7 +135,11 @@ static class LibraryTests {
             using(var img=Image.FromFile(Path.Combine(output,"fixture.png"))){LibraryStore.Add(set,img,"TGC 5.8","Tausche nur 5.8 gegen 5.9 – weiß",64);LibraryStore.Add(set,img,"TGC 5.9","Andere Zahl",256);}
             string archive=Path.Combine(output,"roundtrip.iconset.zip");LibraryStore.Export(set,archive);var imported=LibraryStore.Import(archive);
             if(imported.Id==set.Id||imported.Name==set.Name||imported.Icons.Count!=2||imported.Icons[0].Prompt!=set.Icons[0].Prompt||imported.Icons[0].MaxSize!=64)throw new Exception("Library roundtrip/duplicate import failed");
-            if(!File.ReadAllBytes(LibraryStore.ImagePath(set,set.Icons[0])).SequenceEqual(File.ReadAllBytes(LibraryStore.ImagePath(imported,imported.Icons[0]))))throw new Exception("Library PNG changed on import");
+            // PNG encoders may update metadata; the lossless contract is exact RGBA pixels.
+            using(var before=new Bitmap(LibraryStore.ImagePath(set,set.Icons[0])))using(var after=new Bitmap(LibraryStore.ImagePath(imported,imported.Icons[0]))){
+                if(before.Size!=after.Size)throw new Exception("Library image dimensions changed on import");
+                for(int y=0;y<before.Height;y++)for(int x=0;x<before.Width;x++)if(before.GetPixel(x,y)!=after.GetPixel(x,y))throw new Exception("Library RGBA pixels changed on import");
+            }
             using(var r=new BinaryReader(File.OpenRead(Path.ChangeExtension(LibraryStore.ImagePath(imported,imported.Icons[0]),".ico")))){r.BaseStream.Position=4;if(r.ReadUInt16()!=5)throw new Exception("Library export size not preserved");}
             string hostile=Path.Combine(output,"hostile.iconset.zip");using(var file=File.Create(hostile))using(var zip=new ZipArchive(file,ZipArchiveMode.Create)){using(var w=new StreamWriter(zip.CreateEntry("../escaped.txt").Open()))w.Write("invalid");}
             int count=LibraryStore.Read().Count;bool rejected=false;try{LibraryStore.Import(hostile);}catch(IOException){rejected=true;}if(!rejected||LibraryStore.Read().Count!=count||File.Exists(Path.Combine(LibraryStore.Root,"escaped.txt")))throw new Exception("Unsafe archive modified library store");

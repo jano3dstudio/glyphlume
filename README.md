@@ -12,6 +12,14 @@ A small Windows desktop app for creating, collecting and exporting icons.
 - Explicit shortcut selection before applying an icon.
 - Customizable colors, fonts, logo and layout details; German and English UI.
 
+## Prompt refinement and shape masks
+
+- **Refine** uses the existing Codex sign-in to propose a clearer icon brief. Review and edit the suggestion, then Apply or Discard. It uses a text request, never an automatic image request. Cancel preserves your prompt and image. Reference edits retain all details outside the requested change.
+- Generation includes small-icon design defaults while respecting explicit background, text and style requests.
+- **Shape mask** offers None, Circle, Rounded square and Hexagon. It center-crops to a square and makes the area outside the shape transparent with antialiased edges. Existing alpha is preserved. None restores the untouched source in the current preview.
+- Preview, ICO export, shortcut application and adding the preview to a library use the masked image. Loading a gallery entry starts with None (library images may already contain a baked mask). Original generation files are unchanged.
+- Masks work offline. They clip a geometric shape; they do not remove the background inside that shape.
+
 ## Build and run
 Windows with .NET Framework 4.x and the included Framework C# compiler is required.
 
