@@ -1,3 +1,15 @@
+<!-- distribution-entry-20260924 -->
+# GLYPHLUME
+
+Windows-Werkzeug für Icons, Varianten und transparente Bildmasken.
+
+[Website](https://tools.jano3dstudio.de/glyphlume/) · [Repository](https://github.com/jano3dstudio/glyphlume) · [Build und Download](DISTRIBUTION.md) · [Entwicklung](DEVELOPMENT.md)
+
+Persoenliches Testprojekt / Prototyp von Jona Fynn Schlegelmilch. Idee, gestalterische Richtung und Optimierung von Jona; KI hat bei Umsetzung und Iterationen unterstuetzt. Kein zugesicherter produktiver Einsatz. Vor wichtigen Arbeiten eigene Sicherungen anlegen.
+
+**Ablage:** Quellen und Anleitungen im Repository; ausfuehrbare Pakete als separate Release-Dateien. Repository bleibt privat. Oeffentliche Freigabe und Lizenzstatus: [PUBLICATION_REVIEW.md](PUBLICATION_REVIEW.md).
+<!-- /distribution-entry-20260924 -->
+
 <!-- workspace-navigation-20260921 -->
 ## Projekt-Einstieg · GLYPHLUME
 
@@ -9,7 +21,7 @@
 | Build-Einstieg | [build.ps1](<build.ps1>) |
 | Pruefstand / Anleitung | [docs/DELIVERY-2026-09-21.md](<docs/DELIVERY-2026-09-21.md>) |
 | Git-Repository | `.` |
-| App starten | [GLYPHLUME](<GLYPHLUME.exe>) |
+| App starten | `GLYPHLUME.exe` (lokaler Start; siehe [Build und Download](DISTRIBUTION.md)) |
 | Gemeinsame Module | [app-kit.plan.json](<app-kit.plan.json>) |
 | Lokale Pakete / Builds | `dist` |
 
