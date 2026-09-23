@@ -1,3 +1,9 @@
+## Öffentlicher Quellstand · 24.09.2026
+
+Der Quellcode dieses persönlichen Prototyps ist öffentlich einsehbar. Es wird keine neue MIT-/GPL- oder andere allgemeine Open-Source-Lizenz erteilt. Bestehende Rechte und Lizenzen an enthaltenen Drittanbieterkomponenten bleiben erhalten. Für weitergehende Nutzung oder Weitergabe bitte die jeweiligen Bedingungen beachten bzw. Jona kontaktieren.
+
+Die Releases sind experimentelle, vorhandene Buildstände. ZIP-Integrität und Prüfsummen sind geprüft; die Veröffentlichung ist keine neue Funktionsabnahme oder Zusicherung für produktive Arbeit. Private Profile, persönliche Daten und Zugangsdaten gehören nicht in dieses Repository.
+
 # GLYPHLUME · Build und Lieferung
 
 Stand: 24.09.2026. [Website](https://tools.jano3dstudio.de/glyphlume/) · [GitHub-Releases](https://github.com/jano3dstudio/glyphlume/releases).

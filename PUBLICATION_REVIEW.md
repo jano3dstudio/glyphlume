@@ -1,3 +1,13 @@
+## Öffentlicher Quellstand · 24.09.2026
+
+Der Quellcode dieses persönlichen Prototyps ist öffentlich einsehbar. Es wird keine neue MIT-/GPL- oder andere allgemeine Open-Source-Lizenz erteilt. Bestehende Rechte und Lizenzen an enthaltenen Drittanbieterkomponenten bleiben erhalten. Für weitergehende Nutzung oder Weitergabe bitte die jeweiligen Bedingungen beachten bzw. Jona kontaktieren.
+
+Die Releases sind experimentelle, vorhandene Buildstände. ZIP-Integrität und Prüfsummen sind geprüft; die Veröffentlichung ist keine neue Funktionsabnahme oder Zusicherung für produktive Arbeit. Private Profile, persönliche Daten und Zugangsdaten gehören nicht in dieses Repository.
+
+Aktueller Nachweis: Quell-/Historien-Musterscan ohne bestätigte Geheimnisse oder persönliche Pfadtreffer in diesem Projekt; Dateiliste und Komponentenherkunft geprüft. Keine offenen Issues/zusätzlichen Branches. DAYRIVO-Actions-Protokolle gesondert geprüft, keine Artefakte. Eine nicht gewählte Open-Source-Lizenz verhindert die bloße Einsicht nicht. Allgemeine Restrisiken und Testgrenzen bleiben bestehen.
+
+Die folgende Erstprüfung ist historisch:
+
 # GLYPHLUME · Veroeffentlichungspruefung
 
 Stand 24.09.2026; gepruefter Quellstand `f5236e1d91be8cb8264ca5eacc89a774901da884`.
