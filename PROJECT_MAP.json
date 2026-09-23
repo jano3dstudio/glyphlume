@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "glyphlume",
+  "name": "GLYPHLUME",
+  "appRootFromMap": ".",
+  "source": ".",
+  "repository": ".",
+  "build": "build.ps1",
+  "rules": "AGENTS.md",
+  "verification": "docs/DELIVERY-2026-09-21.md",
+  "launch": "GLYPHLUME.exe",
+  "launchKind": "file",
+  "modulePlan": "app-kit.plan.json",
+  "packages": [
+    "dist"
+  ],
+  "testAndScriptFolders": [],
+  "pathPolicy": "Existing source, build, launch and data paths retained; no automatic migration.",
+  "gitPolicy": "Source and documentation in Git; local binaries, packages, profiles and caches excluded. Pinned build dependencies may stay tracked.",
+  "development": {
+    "guide": "DEVELOPMENT.md",
+    "requiredPaths": [
+      "assets/Glyphlume.png"
+    ],
+    "buildAndTestCommands": [],
+    "frameworkCompiler": true,
+    "manualChecks": [
+      "WebView2 Runtime / Host / GUI-Pruefungen siehe DEVELOPMENT.md",
+      "Fremdrechner-Neuaufbau nicht durch eine Pfadpruefung belegt"
+    ]
+  },
+  "icon": {
+    "source": "assets/Glyphlume.png",
+    "exports": [
+      "assets/Glyphlume.ico",
+      "TGC_SEP26_2.ico"
+    ],
+    "policy": "../jano-app-kit/APP_ICONS.md"
+  }
+}

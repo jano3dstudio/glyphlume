@@ -1,3 +1,27 @@
+<!-- workspace-navigation-20260921 -->
+## Projekt-Einstieg · GLYPHLUME
+
+| Gesucht | Pfad |
+| --- | --- |
+| Orientierung fuer Agents | [PROJECT_MAP.json](<PROJECT_MAP.json>) |
+| Quellcode | [.](<./>) |
+| Verbindliche Projektregeln | [AGENTS.md](<AGENTS.md>) |
+| Build-Einstieg | [build.ps1](<build.ps1>) |
+| Pruefstand / Anleitung | [docs/DELIVERY-2026-09-21.md](<docs/DELIVERY-2026-09-21.md>) |
+| Git-Repository | `.` |
+| App starten | [GLYPHLUME](<GLYPHLUME.exe>) |
+| Gemeinsame Module | [app-kit.plan.json](<app-kit.plan.json>) |
+| Lokale Pakete / Builds | `dist` |
+
+Ordnung vom 21.09.2026: Bestehende Quell-, Build-, Start- und Datenpfade bleiben
+erhalten. Paketordner behalten ihre bisherigen Namen, damit Scripts und alte
+Aufgaben weiter passen. Fertige EXEs/Pakete sind lokale Lieferdateien, keine
+neuen Git-Quellen. Bewusst gepinnte SDK-Dateien bleiben Build-Abhaengigkeiten.
+Vor Git-Aktionen den angegebenen Repository-Ordner verwenden. Aeltere
+Entwicklungskopien nicht ungeprueft ueber diesen Stand kopieren. Kein Upload
+und keine neue Designfreigabe durch diese Ablagepflege.
+<!-- /workspace-navigation-20260921 -->
+
 # GLYPHLUME
 
 A small Windows desktop app for creating, collecting and exporting icons.
@@ -46,3 +70,16 @@ This repository contains reviewed source and product assets. Personal generation
 Created by [Jona Fynn Schlegelmilch](https://www.linkedin.com/in/jonaschlegelmilch/).
 
 Name screening and its limits: [BRAND-CHECK.md](BRAND-CHECK.md).
+
+## Entwickler-Einstieg · 21.09.2026
+
+[DEVELOPMENT.md](DEVELOPMENT.md) beschreibt Voraussetzungen, konkrete Build-/Testbefehle,
+Datenablage, Modulgrenzen und offene Punkte. Vor Weiterarbeit zuerst dort lesen;
+vorhandene Produktregeln und fachliche Nachweise bleiben massgeblich.
+
+
+## GitHub-Ablage
+
+GLYPHLUME – Windows-Werkzeug für Icons, Varianten und transparente Bildmasken.
+
+Repository: `jano3dstudio/glyphlume` (privat). Quellen, Build-Anleitung und Projektregeln werden versioniert. Persönliche Laufzeitdaten, Zugangsdaten und lokale Sicherungen gehören nicht in Git. Bestehende lokale Start- und Quellpfade bleiben erhalten. Der Upload ist eine Quellcodesicherung; technische Prüfstände und persönliche Freigabe stehen separat in der Projektdokumentation.

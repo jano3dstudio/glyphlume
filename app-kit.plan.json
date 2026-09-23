@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "app": "glyphlume",
+  "host": "winforms",
+  "state": "prepared",
+  "kitSource": "../jano-app-kit",
+  "build": "build.ps1",
+  "seams": [
+    "WindowChrome.cs",
+    "Styles.cs",
+    "Localization.cs",
+    "IconStudio.cs"
+  ],
+  "activeModules": [],
+  "candidateModules": [],
+  "migration": "Eigene WindowChrome-/Style-Schnittstellen: nativen Look-Adapter erstellen. Das WebView2-Looks-Modul ist nicht direkt einsetzbar.",
+  "preserve": "data, Icons, Bibliotheken, Anmeldedaten und eigene Looks erhalten; keine Bildgenerierung als UI-Test.",
+  "gate": "Gemeinsame Bausteine zuerst in Second Brain mit Jona abstimmen. Danach App einzeln anbinden, bauen und visuell pruefen.",
+  "shell": "pending-reference-review",
+  "lookAdapter": "adapter-required"
+}

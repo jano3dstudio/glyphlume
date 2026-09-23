@@ -11,7 +11,8 @@ class StudioWindow : Form {
     bool chrome, resizable, updating, restoringBounds;
     Rectangle normalBounds;
     FormWindowState previousState;
-    int edge, captionHeight;
+    int edge, captionHeight, creditHeight;
+    LinkLabel creatorCredit;
     float scale=1;
     CaptionButton minimize, maximize, close;
     [DllImport("user32.dll")] static extern IntPtr GetSystemMenu(IntPtr window,bool reset);
@@ -44,17 +45,22 @@ class StudioWindow : Form {
             resizable=FormBorderStyle==FormBorderStyle.Sizable||FormBorderStyle==FormBorderStyle.SizableToolWindow;
             using(var g=CreateGraphics())scale=g.DpiX/96f;
             edge=Math.Max(4,(int)Math.Round(4*scale));captionHeight=(int)Math.Round(32*scale);
+            creditHeight=(int)Math.Round(26*scale);
             SuspendLayout();chrome=true;FormBorderStyle=FormBorderStyle.None;
-            Padding=new Padding(inset.Left+edge,inset.Top+captionHeight+edge,inset.Right+edge,inset.Bottom+edge);
-            ClientSize=new Size(content.Width+edge*2,content.Height+captionHeight+edge*2);
+            Padding=new Padding(inset.Left+edge,inset.Top+captionHeight+edge,inset.Right+edge,inset.Bottom+edge+creditHeight);
+            ClientSize=new Size(content.Width+edge*2,content.Height+captionHeight+edge*2+creditHeight);
             minimize=new CaptionButton(this,0);maximize=new CaptionButton(this,1);close=new CaptionButton(this,2);
             minimize.Click+=(s,a)=>SendMessage(Handle,0x112,new IntPtr(0xF020),IntPtr.Zero);
             maximize.Click+=(s,a)=>ToggleMaximize();close.Click+=(s,a)=>Close();
-            Controls.AddRange(new Control[]{minimize,maximize,close});
+            HideLegacyCredits(this);
+            creatorCredit=new LinkLabel{Text="Created by Jona Fynn Schlegelmilch",AutoSize=false,TextAlign=ContentAlignment.MiddleLeft,LinkColor=Theme.Muted,ActiveLinkColor=Theme.Text,VisitedLinkColor=Theme.Muted,BackColor=Theme.Background,LinkBehavior=LinkBehavior.HoverUnderline,Font=new Font(Theme.UiFont,8),AccessibleName="Created by Jona Fynn Schlegelmilch",TabStop=true};
+            creatorCredit.LinkClicked+=(s,a)=>{try{System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://www.linkedin.com/in/jonaschlegelmilch/"){UseShellExecute=true});}catch{}};
+            Controls.AddRange(new Control[]{minimize,maximize,close,creatorCredit});
             ResumeLayout(true);RefreshChrome();
         }
         base.OnLoad(e);
     }
+    static void HideLegacyCredits(Control parent){foreach(Control child in parent.Controls){if(child is LinkLabel&&child.Text.IndexOf("created by Jona Fynn Schlegelmilch",StringComparison.OrdinalIgnoreCase)>=0)child.Visible=false;else HideLegacyCredits(child);}}
     internal void ToggleMaximize(){if(MaximizeBox)SendMessage(Handle,0x112,new IntPtr(WindowState==FormWindowState.Maximized?0xF120:0xF030),IntPtr.Zero);}
     internal void RefreshChrome(){
         if(!chrome||!TopLevel||IsDisposed||updating)return;
@@ -72,6 +78,7 @@ class StudioWindow : Form {
                 close.AccessibleName=L.English?"Close":"Schließen";
                 close.Invalidate();maximize.Invalidate();minimize.Invalidate();
             }
+            if(creatorCredit!=null){creatorCredit.SetBounds(edge+(int)(12*scale),ClientSize.Height-edge-creditHeight,Math.Max(1,ClientSize.Width-edge*2-(int)(24*scale)),creditHeight);creatorCredit.BringToFront();}
             bool native=false;
             if(IsHandleCreated)try{int preference=WindowState==FormWindowState.Normal?2:1;native=DwmSetWindowAttribute(Handle,33,ref preference,4)==0;}catch{}
             Region next=null;
@@ -92,6 +99,8 @@ class StudioWindow : Form {
         base.OnLocationChanged(e);
         if(chrome&&!restoringBounds&&previousState==FormWindowState.Normal&&WindowState==FormWindowState.Normal)normalBounds=Bounds;
     }
+    protected override void OnShown(EventArgs e){base.OnShown(e);RefreshChrome();}
+    protected override void OnLayout(LayoutEventArgs e){base.OnLayout(e);RefreshChrome();}
     protected override void OnTextChanged(EventArgs e){base.OnTextChanged(e);Invalidate();}
     protected override void OnActivated(EventArgs e){base.OnActivated(e);Invalidate();}
     protected override void OnDeactivate(EventArgs e){base.OnDeactivate(e);Invalidate();}
@@ -136,6 +145,10 @@ class StudioWindow : Form {
             }
             if(m.Msg==0x84){
                 long packed=m.LParam.ToInt64();var point=PointToClient(new Point(unchecked((short)packed),unchecked((short)(packed>>16))));
+                // Caption controls are client controls, never draggable/nonclient pixels.
+                if((minimize!=null&&minimize.Visible&&minimize.Bounds.Contains(point))||
+                   (maximize!=null&&maximize.Visible&&maximize.Bounds.Contains(point))||
+                   (close!=null&&close.Visible&&close.Bounds.Contains(point))){m.Result=new IntPtr(1);return;}
                 int result=1;
                 if(resizable&&WindowState==FormWindowState.Normal){
                     int grip=Math.Max(edge,(int)(6*scale));bool l=point.X<grip,r=point.X>=ClientSize.Width-grip,t=point.Y<grip,b=point.Y>=ClientSize.Height-grip;
